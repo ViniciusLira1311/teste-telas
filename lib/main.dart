@@ -13,48 +13,46 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(title: const Text('Teste de Telas')),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ElevatedButton(
-                onPressed:
-                    () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const TelaLogin()),
-                    ),
-                child: const Text('Abrir Tela de Login'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const TelaAdmin()),
-                    ),
-                child: const Text('Abrir Tela Admin'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const UserProfile()),
-                    ),
-                child: const Text('Abrir Perfil'),
-              ),
-              ElevatedButton(
-                onPressed:
-                    () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => const TelaPublicacoes(),
-                      ),
-                    ),
-                child: const Text('Abrir Publicações'),
-              ),
-            ],
-          ),
+      // Rotas nomeadas para navegação
+      routes: {
+        '/': (context) => const HomeScreen(),
+        '/login': (context) => const TelaLogin(),
+        '/admin': (context) => const TelaAdmin(),
+        '/profile': (context) => const UserProfile(),
+        '/posts': (context) => const TelaPublicacoes(),
+      },
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Telas do App')),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/login'),
+              child: const Text('Abrir Login'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/admin'),
+              child: const Text('Abrir Admin'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/profile'),
+              child: const Text('Abrir Perfil'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/posts'),
+              child: const Text('Abrir Publicações'),
+            ),
+          ],
         ),
       ),
     );

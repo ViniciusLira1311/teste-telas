@@ -6,43 +6,19 @@ class TelaLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight: 200,
-            flexibleSpace: const FlexibleSpaceBar(
-              background: Placeholder(), // Substitua por um gradiente se quiser
-              title: Text('Login'),
+      appBar: AppBar(title: const Text('Login')),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          children: [
+            const TextField(decoration: InputDecoration(labelText: 'Email')),
+            const TextField(decoration: InputDecoration(labelText: 'Senha')),
+            ElevatedButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Voltar'),
             ),
-            pinned: true,
-          ),
-          SliverPadding(
-            padding: const EdgeInsets.all(25),
-            sliver: SliverToBoxAdapter(
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(25),
-                  child: Column(
-                    children: [
-                      const Text('Bem-vindo', style: TextStyle(fontSize: 24)),
-                      const SizedBox(height: 30),
-                      TextField(
-                        decoration: const InputDecoration(labelText: 'Email'),
-                      ),
-                      TextField(
-                        decoration: const InputDecoration(labelText: 'Senha'),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text('Entrar'),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
